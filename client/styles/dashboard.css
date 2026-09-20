@@ -1,0 +1,82 @@
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+section {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-block: 1rem;
+}
+
+/* The state lives on the section's data-state attribute (see setStatus in dashboard.js). */
+section[data-state="loading"] {
+  color: #666;
+}
+
+section[data-state="empty"] {
+  color: #888;
+  font-style: italic;
+}
+
+section[data-state="error"] {
+  color: #b00020;
+  font-weight: bold;
+}
+
+section[data-state="stale"],
+section[data-state="reconnecting"] {
+  border-color: #b26a00;
+}
+
+section[data-state="stale"] .stale-note,
+section[data-state="reconnecting"] .stale-note {
+  color: #b26a00;
+  font-weight: bold;
+}
+
+#connection-status[data-state="stale"],
+#connection-status[data-state="reconnecting"],
+#connection-status[data-state="stopped"] {
+  color: #b26a00;
+  font-weight: bold;
+}
+
+#connection-status[data-state="live"] {
+  color: #1b7f3b;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+#orderbook-view {
+  display: flex;
+  gap: 1rem;
+}
+
+.bids,
+.asks {
+  flex: 1;
+}
+
+.best {
+  font-weight: bold;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+}

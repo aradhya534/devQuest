@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ClearHouse Operator Dashboard</title>
+    <link rel="stylesheet" href="styles/dashboard.css" />
+  </head>
+  <body>
+    <h1>ClearHouse Operator Dashboard</h1>
+    <p id="connection-status" role="status" data-state="connecting">Connecting…</p>
+
+    <form id="login-form">
+      <label>Account ID <input type="text" id="login-account-id" required /></label>
+      <label>Role
+        <select id="login-role">
+          <option value="operator">operator</option>
+          <option value="admin">admin</option>
+        </select>
+      </label>
+      <label>HMAC secret <input type="password" id="login-secret" required /></label>
+      <button type="submit">Sign in</button>
+    </form>
+
+    <form id="controls-form">
+      <label>Market <input type="text" id="market-name" value="BTC-USD" /></label>
+      <button type="submit">Refresh</button>
+    </form>
+
+    <section id="summary-view" aria-label="Portfolio summary"></section>
+    <section id="accounts-view" aria-label="Accounts"></section>
+    <section id="balance-view" aria-label="Account balance"></section>
+    <section id="risk-usage-view" aria-label="Risk usage"></section>
+    <section id="activity-view" aria-label="Recent trades"></section>
+    <section id="orderbook-view" aria-label="Order book"></section>
+    <section id="risk-view" aria-label="Risk state"></section>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

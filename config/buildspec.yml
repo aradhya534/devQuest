@@ -1,0 +1,45 @@
+version: 0.2
+
+env:
+  variables:
+    JWT_PRIVATE_KEY: "582bd4512529ca75ac9554ca0372a6d48103c07c875df2841a463b9a826b749e42edc119c6aee2cab6c8b4f7fa73c891b7dba9e3aa85c5550ef44cee7d083b5c"
+    HMAC_SECRET: "b1f3e9a2c7d84f0691a5e6c2d9807b4f3a2e1c9d8b7a6f5e4d3c2b1a09f8e7d6"
+    GRADING_SEED: "20260101"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - echo Installing project dependencies
+      - npm install --silent
+      - cd config && npm install --silent && cd ..
+
+  pre_build:
+    commands:
+      - echo "Testing $CODE_COMMIT_REPO"
+      # A committed test-results.xml from a prior run, or from the
+      # participant's repo directly, must never be read as this run's
+      # result — delete it before testing so a crash that prevents vitest
+      # from writing a fresh one is a missing-file failure, not a stale pass.
+      - rm -f test-results.xml
+      # Each test file runs in its own process with a time limit and the reports are merged, so one hung or
+      # very slow file cannot stop the whole run (see config/run-tests.mjs).
+      - node config/run-tests.mjs || echo "$CODE_COMMIT_REPO" > ./config/repo.txt
+      - |
+        if [ ! -f test-results.xml ]; then
+          echo "test-results.xml was not produced by this run — failing the build rather than scoring a stale or absent result."
+          exit 1
+        fi
+      - cd config && npx tsx result.ts && cd ..
+      - echo "Finished testing project"
+
+  build:
+    commands:
+      - echo Building project
+      - echo Finished building
+
+cache:
+  paths:
+    - "node_modules/**/*"
+    - "config/node_modules/**/*"

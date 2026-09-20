@@ -1,0 +1,11 @@
+version: 1.0
+
+template_name: clearhouse-template
+
+stack: javascript
+
+# Directory name at the root of <template_name>.tar.gz in the official tests bucket.
+tests_root: 99x-ClearHouse-master-template-final-hackathon-nodejs
+
+test_files:
+  - "**/*.test.ts"

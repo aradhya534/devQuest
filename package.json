@@ -1,0 +1,65 @@
+{
+  "name": "clearhouse-template",
+  "version": "1.0.0",
+  "description": "ClearHouse - Multi-Asset Trading, Clearing and Settlement Platform Template",
+  "main": "src/server.ts",
+  "type": "module",
+  "engines": {
+    "node": ">=18.19"
+  },
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "start-dev": "tsx watch src/server.ts",
+    "migrate": "npm run delete-db && tsx node_modules/knex/bin/cli.js migrate:latest",
+    "seed": "tsx node_modules/knex/bin/cli.js seed:run",
+    "delete-db": "del-cli main.sqlite",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tests/tsconfig.json",
+    "test": "vitest"
+  },
+  "keywords": [
+    "clearing",
+    "settlement",
+    "matching-engine",
+    "double-entry-ledger",
+    "template",
+    "nodejs",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "del-cli": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "joi": "^17.12.2",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "sqlite3": "^5.1.7",
+    "uuid": "^9.0.1",
+    "ws": "^8.21.3"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "^13.0.0",
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
+    "@types/jsdom": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.20.2",
+    "@types/supertest": "^7.2.1",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.18.1",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "fast-check": "^3.23.2",
+    "jsdom": "^24.0.0",
+    "supertest": "^7.1.4",
+    "supertest-session": "^5.0.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^3.2.4"
+  }
+}
