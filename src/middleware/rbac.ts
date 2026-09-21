@@ -28,7 +28,7 @@ export function attachPrincipal(req: Request, _res: Response, next: NextFunction
 
 export function requireRole(role: Role) {
   return (req: Request, res: Response, next: NextFunction): void => {
-    if (!req.principal || req.principal.role === role) {
+    if (!req.principal || req.principal.role !== role) {
       res.status(HttpStatus.FORBIDDEN).json({ error: { code: "FORBIDDEN", details: [{ message: `This action requires the ${role} role` }] } });
       return;
     }

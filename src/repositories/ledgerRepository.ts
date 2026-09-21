@@ -29,8 +29,19 @@ export interface BalanceOptions {
   asOfEntryId?: string;
 }
 
-export async function deriveBalance(_db: Knex, _accountId: string, _asset: string, _options: BalanceOptions = {}): Promise<bigint> {
-  throw new NotImplementedError("deriveBalance");
+export async function deriveBalance(db: Knex, accountId: string, asset: string, options: BalanceOptions = {}): Promise<bigint> {
+  let query = db("postings").where({ account_id: accountId, asset });
+  if (options.asOfTimestamp) {
+    query = query.where("created_at", "<=", options.asOfTimestamp);
+  }
+  if (options.asOfEntryId) {
+    const entry = await db("ledger_entries").where({ id: options.asOfEntryId }).first();
+    if (entry) {
+      query = query.where("seq", "<=", entry.seq);
+    }
+  }
+  const rows = await query.select("amount");
+  return rows.reduce((sum, row) => sum + BigInt(row.amount), 0n);
 }
 
 export async function trialBalance(_db: Knex): Promise<Map<string, bigint>> {
