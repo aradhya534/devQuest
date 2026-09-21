@@ -1,19 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="11" failures="0" errors="0" time="0.7176742">
-    <testsuite name="tests/_sanity.test.ts" timestamp="2026-09-21T11:30:22.228Z" hostname="Kawshalya-PC" tests="11" failures="0" errors="0" skipped="0" time="0.7176742">
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Node.js is version 18.19 or newer (20 or 22 recommended)" time="0.0008359">
+<testsuites name="vitest tests" tests="42" failures="0" errors="0" time="2.2221518">
+    <testsuite name="tests/challenge01.test.ts" timestamp="2026-09-21T12:05:46.204Z" hostname="Kawshalya-PC" tests="23" failures="0" errors="0" skipped="0" time="0.818441">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-1: known assets round-trip through the minor-unit parser" time="0.0390009">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Dependencies are installed (run `npm install` if this fails)" time="0.3798471">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-2: malformed amounts are rejected with 400, never silently coerced" time="0.0750544">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; .env file exists with PORT and JWT_PRIVATE_KEY" time="0.0008396">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-3: amounts supplied as JSON numbers are rejected, not coerced to strings" time="0.0289265">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The server module loads and a test session can be created" time="0.0000892">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-4: decimal precision cannot exceed the asset&apos;s own exponent" time="0.0302354">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Database connection works" time="0.0004408">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-5: property — parse and serialise round-trip for every asset and every valid integer" time="0.0319413">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Migrations apply and every required table exists" time="0.0006701">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-6: property — add/sub are inverses and asset-mismatch always throws" time="0.0338563">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The local database file exists (run `npm run migrate` if this fails)" time="0.0003283">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-7: property — total order is antisymmetric and transitive" time="0.0307173">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1b: Rounding conserves value &gt; Challenge 1b-1: half-even and half-up only disagree on an exact midpoint" time="0.0295521">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1b: Rounding conserves value &gt; Challenge 1b-2: property — quotient * divisor + remainder reconstructs the dividend exactly" time="0.031151">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1b: Rounding conserves value &gt; Challenge 1b-3: division by zero is rejected, never produces Infinity or NaN" time="0.0273758">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-1: a correctly signed request is accepted" time="0.0286846">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-2: a missing signature is rejected" time="0.04043">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-3: a signature computed over a different body is rejected" time="0.0324505">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-4: a timestamp outside the signing window is rejected" time="0.0376238">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-5: a replayed nonce is rejected on the second use" time="0.0266059">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-6: an unrecognised algorithm is rejected even with an otherwise valid signature" time="0.0319571">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-1: an operator token is rejected on an admin-only route" time="0.0352307">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-2: an admin-only route rejects a request with no token at all" time="0.0382832">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-3: an admin token is accepted on an admin-only route" time="0.0284289">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-4: a token acting on its own account&apos;s ledger balance succeeds" time="0.0296963">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-5: a valid token cannot read a different account&apos;s ledger balance" time="0.0296602">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-6: an anonymous request (no token at all) to a balance route is unaffected by tenant isolation" time="0.020795">
+        </testcase>
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-7: refreshing rotates the token, and the old refresh token is rejected on reuse" time="0.0266289">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/challenge02.test.ts" timestamp="2026-09-21T12:05:46.213Z" hostname="Kawshalya-PC" tests="8" failures="0" errors="0" skipped="0" time="0.5550415">
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-1: a balanced two-account entry is accepted" time="0.070165">
+        </testcase>
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-2: an entry that does not sum to zero for its asset is rejected, and nothing is written" time="0.0410479">
+        </testcase>
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-3: an entry mixing two assets must balance each one independently" time="0.0368182">
+        </testcase>
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-4: property — a random balanced posting set is always accepted, and derived balances match the reference sum" time="0.1565289">
+        </testcase>
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2b: Append-only and reversal &gt; Challenge 2b-1: reversing an entry restores the pre-entry balance exactly" time="0.0415797">
+        </testcase>
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2b: Append-only and reversal &gt; Challenge 2b-2: the trial balance across all accounts sums to zero for every asset touched" time="0.0381256">
+        </testcase>
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2c: Point-in-time balances and statement pagination &gt; Challenge 2c-1: an as-of balance excludes entries posted after the cutoff entry" time="0.0468955">
+        </testcase>
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2c: Point-in-time balances and statement pagination &gt; Challenge 2c-2: concatenating every statement page yields each posting exactly once" time="0.0716374">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/_sanity.test.ts" timestamp="2026-09-21T12:05:46.216Z" hostname="Kawshalya-PC" tests="11" failures="0" errors="0" skipped="0" time="0.8486693">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Node.js is version 18.19 or newer (20 or 22 recommended)" time="0.0007211">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Dependencies are installed (run `npm install` if this fails)" time="0.5122888">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; .env file exists with PORT and JWT_PRIVATE_KEY" time="0.001434">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The server module loads and a test session can be created" time="0.0001063">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Database connection works" time="0.0004614">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Migrations apply and every required table exists" time="0.0010572">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The local database file exists (run `npm run migrate` if this fails)" time="0.0006657">
             <system-out>
 
 
@@ -28,13 +94,13 @@ This test FAILS if you have not run:
 
             </system-out>
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The asset registry endpoint responds with the supported assets" time="0.2614369">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The asset registry endpoint responds with the supported assets" time="0.2629599">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Routes exist: unknown paths are 404, real ones are not" time="0.0128366">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Routes exist: unknown paths are 404, real ones are not" time="0.0167673">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The property-testing library works" time="0.002389">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The property-testing library works" time="0.0023376">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The protected test helpers are in place" time="0.0006435">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The protected test helpers are in place" time="0.0003107">
         </testcase>
     </testsuite>
 </testsuites>
