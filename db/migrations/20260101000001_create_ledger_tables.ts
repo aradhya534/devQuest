@@ -4,7 +4,7 @@ export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable("accounts", (table) => {
     table.string("id").primary();
     table.string("type").notNullable(); // asset | liability | equity | revenue | expense
-    table.string("name").notNullable().unique();
+    table.string("name").notNullable();
     table.string("available").notNullable().defaultTo("0"); // signed BigInt minor units, as text
     table.string("held").notNullable().defaultTo("0");
     table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());

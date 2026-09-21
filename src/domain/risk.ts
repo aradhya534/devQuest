@@ -1,5 +1,3 @@
-import { NotImplementedError } from "./notImplemented.js";
-
 export type RiskViolation = "MAX_NOTIONAL" | "MAX_OPEN_ORDERS" | "MAX_POSITION";
 
 export interface RiskLimits {
@@ -20,18 +18,45 @@ export interface OrderForRiskCheck {
   willRest: boolean; // whether this order, if accepted, joins the book (and so holds open-order and exposure slots)
 }
 
-export function firstViolatedRule(_state: RiskState, _limits: RiskLimits, _order: OrderForRiskCheck): RiskViolation | null {
-  throw new NotImplementedError("firstViolatedRule");
+export function firstViolatedRule(state: RiskState, limits: RiskLimits, order: OrderForRiskCheck): RiskViolation | null {
+  if (order.price !== undefined) {
+    const notional = order.price * order.quantity;
+    if (notional > limits.maxNotional) {
+      return "MAX_NOTIONAL";
+    }
+  }
+
+  if (order.willRest) {
+    if (state.openOrderCount + 1 > limits.maxOpenOrders) {
+      return "MAX_OPEN_ORDERS";
+    }
+
+    const delta = order.side === "buy" ? order.quantity : -order.quantity;
+    const newExposure = state.committedExposure + delta;
+    const absExposure = newExposure < 0n ? -newExposure : newExposure;
+    if (absExposure > limits.maxPositionAbs) {
+      return "MAX_POSITION";
+    }
+  }
+
+  return null;
 }
 
-// Commits an accepted, resting order's slots against the account's risk
-// state — call after firstViolatedRule reports no violation.
-export function reserve(_state: RiskState, _order: OrderForRiskCheck): RiskState {
-  throw new NotImplementedError("reserve");
+export function reserve(state: RiskState, order: OrderForRiskCheck): RiskState {
+  if (!order.willRest) {
+    return { ...state };
+  }
+  const delta = order.side === "buy" ? order.quantity : -order.quantity;
+  return {
+    openOrderCount: state.openOrderCount + 1,
+    committedExposure: state.committedExposure + delta,
+  };
 }
 
-// Reverses a prior reserve() when a reserved order is cancelled or rejected
-// after the fact (e.g. a self-trade-prevention cancel from the matching engine).
-export function release(_state: RiskState, _side: "buy" | "sell", _quantity: bigint): RiskState {
-  throw new NotImplementedError("release");
+export function release(state: RiskState, side: "buy" | "sell", quantity: bigint): RiskState {
+  const delta = side === "buy" ? quantity : -quantity;
+  return {
+    openOrderCount: Math.max(0, state.openOrderCount - 1),
+    committedExposure: state.committedExposure - delta,
+  };
 }

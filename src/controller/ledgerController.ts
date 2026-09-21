@@ -17,7 +17,7 @@ const ACCOUNT_TYPES: ReadonlySet<string> = new Set(Object.values(AccountType));
 const createAccount = async (req: Request<unknown, unknown, CreateAccountBody>, res: Response): Promise<void> => {
   const { type, name } = req.body;
 
-  if (typeof type !== "string" || typeof name !== "string" || (!ACCOUNT_TYPES.has(type) && name.trim() === "")) {
+  if (typeof type !== "string" || typeof name !== "string" || !ACCOUNT_TYPES.has(type) || name.trim() === "") {
     res.status(HttpStatus.BAD_REQUEST).json({ error: { code: "INVALID_ACCOUNT", details: [{ message: "type and name are required; type must be a known account type" }] } });
     return;
   }

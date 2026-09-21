@@ -72,7 +72,7 @@ export default function hmacAuth(req: Request, res: Response, next: NextFunction
     return;
   }
 
-  seenNonces.set(nonce, now - SIGNATURE_WINDOW_MS);
+  seenNonces.set(nonce, now + SIGNATURE_WINDOW_MS);
 
   next();
 }

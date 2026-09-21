@@ -1,5 +1,3 @@
-import { NotImplementedError } from "./notImplemented.js";
-
 export enum AccountType {
   ASSET = "asset",
   LIABILITY = "liability",
@@ -8,8 +6,8 @@ export enum AccountType {
   EXPENSE = "expense",
 }
 
-export function isDebitNormal(_type: AccountType): boolean {
-  throw new NotImplementedError("isDebitNormal");
+export function isDebitNormal(type: AccountType): boolean {
+  return type === AccountType.ASSET || type === AccountType.EXPENSE;
 }
 
 export interface PostingInput {
@@ -25,10 +23,27 @@ export class UnbalancedEntryError extends Error {
   }
 }
 
-export function assertBalanced(_postings: readonly PostingInput[]): void {
-  throw new NotImplementedError("assertBalanced");
+export function assertBalanced(postings: readonly PostingInput[]): void {
+  const sums = new Map<string, bigint>();
+  for (const p of postings) {
+    const current = sums.get(p.asset) ?? 0n;
+    sums.set(p.asset, current + p.amount);
+  }
+  const imbalances = new Map<string, bigint>();
+  for (const [asset, sum] of sums) {
+    if (sum !== 0n) {
+      imbalances.set(asset, sum);
+    }
+  }
+  if (imbalances.size > 0) {
+    throw new UnbalancedEntryError(imbalances);
+  }
 }
 
-export function reversePostings(_postings: readonly PostingInput[]): PostingInput[] {
-  throw new NotImplementedError("reversePostings");
+export function reversePostings(postings: readonly PostingInput[]): PostingInput[] {
+  return postings.map((p) => ({
+    accountId: p.accountId,
+    asset: p.asset,
+    amount: -p.amount,
+  }));
 }

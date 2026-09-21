@@ -1,5 +1,3 @@
-import { NotImplementedError } from "./notImplemented.js";
-
 export type Side = "buy" | "sell";
 export type TimeInForce = "GTC" | "IOC" | "FOK" | "POST_ONLY";
 
@@ -18,37 +16,134 @@ function remaining(order: RestingOrder): bigint {
   return order.quantity - order.filled;
 }
 
+interface PriceLevel {
+  price: bigint;
+  orders: RestingOrder[];
+}
+
 class BookSide {
-  private readonly orders: RestingOrder[] = [];
+  private readonly prices: bigint[] = [];
+  private readonly priceLevels = new Map<bigint, PriceLevel>();
+  private readonly orderToLevel = new Map<string, PriceLevel>();
 
   constructor(private readonly betterPrice: (a: bigint, b: bigint) => boolean) {}
 
-  insert(_order: RestingOrder): void {
-    void this.betterPrice; // available for price-time ordering — see availableLiquidity too
-    throw new NotImplementedError("BookSide.insert");
+  insert(order: RestingOrder): void {
+    let level = this.priceLevels.get(order.price);
+    if (level) {
+      if (level.orders.length === 0 || order.sequence >= level.orders[level.orders.length - 1]!.sequence) {
+        level.orders.push(order);
+      } else {
+        let low = 0;
+        let high = level.orders.length;
+        while (low < high) {
+          const mid = (low + high) >>> 1;
+          if (order.sequence < level.orders[mid]!.sequence) {
+            high = mid;
+          } else {
+            low = mid + 1;
+          }
+        }
+        level.orders.splice(low, 0, order);
+      }
+      this.orderToLevel.set(order.id, level);
+    } else {
+      level = { price: order.price, orders: [order] };
+      this.priceLevels.set(order.price, level);
+      this.orderToLevel.set(order.id, level);
+
+      let low = 0;
+      let high = this.prices.length;
+      while (low < high) {
+        const mid = (low + high) >>> 1;
+        if (this.betterPrice(order.price, this.prices[mid]!)) {
+          high = mid;
+        } else {
+          low = mid + 1;
+        }
+      }
+      this.prices.splice(low, 0, order.price);
+    }
   }
 
   best(): RestingOrder | undefined {
-    return this.orders[0];
+    if (this.prices.length === 0) return undefined;
+    const level = this.priceLevels.get(this.prices[0]!);
+    return level?.orders[0];
   }
 
   removeById(id: string): RestingOrder | undefined {
-    const index = this.orders.findIndex((order) => order.id === id);
+    const level = this.orderToLevel.get(id);
+    if (!level) return undefined;
+    const index = level.orders.findIndex((order) => order.id === id);
     if (index === -1) return undefined;
-    const [removed] = this.orders.splice(index, 1);
+    const [removed] = level.orders.splice(index, 1);
+    this.orderToLevel.delete(id);
+
+    if (level.orders.length === 0) {
+      this.priceLevels.delete(level.price);
+      let low = 0;
+      let high = this.prices.length;
+      while (low < high) {
+        const mid = (low + high) >>> 1;
+        if (this.prices[mid] === level.price) {
+          this.prices.splice(mid, 1);
+          break;
+        } else if (this.betterPrice(level.price, this.prices[mid]!)) {
+          high = mid;
+        } else {
+          low = mid + 1;
+        }
+      }
+    }
+
     return removed;
   }
 
   removeFront(): void {
-    this.orders.shift();
+    if (this.prices.length === 0) return;
+    const bestPrice = this.prices[0]!;
+    const level = this.priceLevels.get(bestPrice);
+    if (!level || level.orders.length === 0) return;
+    const removed = level.orders.shift();
+    if (removed) {
+      this.orderToLevel.delete(removed.id);
+    }
+    if (level.orders.length === 0) {
+      this.priceLevels.delete(bestPrice);
+      this.prices.shift();
+    }
   }
 
-  availableLiquidity(_limit: bigint | undefined, _excludeAccountId: string): bigint {
-    throw new NotImplementedError("BookSide.availableLiquidity");
+  availableLiquidity(limit: bigint | undefined, excludeAccountId: string): bigint {
+    let total = 0n;
+    for (const price of this.prices) {
+      if (limit !== undefined && this.betterPrice(limit, price)) {
+        break;
+      }
+      const level = this.priceLevels.get(price);
+      if (level) {
+        for (const order of level.orders) {
+          if (order.accountId !== excludeAccountId) {
+            total += order.quantity - order.filled;
+          }
+        }
+      }
+    }
+    return total;
   }
 
   snapshot(): RestingOrder[] {
-    return this.orders.map((order) => ({ ...order }));
+    const result: RestingOrder[] = [];
+    for (const price of this.prices) {
+      const level = this.priceLevels.get(price);
+      if (level) {
+        for (const order of level.orders) {
+          result.push({ ...order });
+        }
+      }
+    }
+    return result;
   }
 }
 
