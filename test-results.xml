@@ -1,85 +1,135 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="42" failures="0" errors="0" time="2.2221518">
-    <testsuite name="tests/challenge01.test.ts" timestamp="2026-09-21T12:05:46.204Z" hostname="Kawshalya-PC" tests="23" failures="0" errors="0" skipped="0" time="0.818441">
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-1: known assets round-trip through the minor-unit parser" time="0.0390009">
+<testsuites name="vitest tests" tests="66" failures="0" errors="0" time="3.3743624">
+    <testsuite name="tests/challenge01.test.ts" timestamp="2026-09-21T12:51:24.291Z" hostname="Kawshalya-PC" tests="23" failures="0" errors="0" skipped="0" time="0.9525896">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-1: known assets round-trip through the minor-unit parser" time="0.0439981">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-2: malformed amounts are rejected with 400, never silently coerced" time="0.0750544">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-2: malformed amounts are rejected with 400, never silently coerced" time="0.107942">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-3: amounts supplied as JSON numbers are rejected, not coerced to strings" time="0.0289265">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-3: amounts supplied as JSON numbers are rejected, not coerced to strings" time="0.039311">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-4: decimal precision cannot exceed the asset&apos;s own exponent" time="0.0302354">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-4: decimal precision cannot exceed the asset&apos;s own exponent" time="0.0386868">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-5: property — parse and serialise round-trip for every asset and every valid integer" time="0.0319413">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-5: property — parse and serialise round-trip for every asset and every valid integer" time="0.0421215">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-6: property — add/sub are inverses and asset-mismatch always throws" time="0.0338563">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-6: property — add/sub are inverses and asset-mismatch always throws" time="0.045651">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-7: property — total order is antisymmetric and transitive" time="0.0307173">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1a: Asset registry and strict amount parsing &gt; Challenge 1a-7: property — total order is antisymmetric and transitive" time="0.0370114">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1b: Rounding conserves value &gt; Challenge 1b-1: half-even and half-up only disagree on an exact midpoint" time="0.0295521">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1b: Rounding conserves value &gt; Challenge 1b-1: half-even and half-up only disagree on an exact midpoint" time="0.0320717">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1b: Rounding conserves value &gt; Challenge 1b-2: property — quotient * divisor + remainder reconstructs the dividend exactly" time="0.031151">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1b: Rounding conserves value &gt; Challenge 1b-2: property — quotient * divisor + remainder reconstructs the dividend exactly" time="0.0385586">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1b: Rounding conserves value &gt; Challenge 1b-3: division by zero is rejected, never produces Infinity or NaN" time="0.0273758">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1b: Rounding conserves value &gt; Challenge 1b-3: division by zero is rejected, never produces Infinity or NaN" time="0.0313546">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-1: a correctly signed request is accepted" time="0.0286846">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-1: a correctly signed request is accepted" time="0.0337294">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-2: a missing signature is rejected" time="0.04043">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-2: a missing signature is rejected" time="0.0477704">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-3: a signature computed over a different body is rejected" time="0.0324505">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-3: a signature computed over a different body is rejected" time="0.0378051">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-4: a timestamp outside the signing window is rejected" time="0.0376238">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-4: a timestamp outside the signing window is rejected" time="0.0470256">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-5: a replayed nonce is rejected on the second use" time="0.0266059">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-5: a replayed nonce is rejected on the second use" time="0.0358373">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-6: an unrecognised algorithm is rejected even with an otherwise valid signature" time="0.0319571">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1c: HMAC request signing &gt; Challenge 1c-6: an unrecognised algorithm is rejected even with an otherwise valid signature" time="0.0386031">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-1: an operator token is rejected on an admin-only route" time="0.0352307">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-1: an operator token is rejected on an admin-only route" time="0.0389576">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-2: an admin-only route rejects a request with no token at all" time="0.0382832">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-2: an admin-only route rejects a request with no token at all" time="0.036167">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-3: an admin token is accepted on an admin-only route" time="0.0284289">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-3: an admin token is accepted on an admin-only route" time="0.0308732">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-4: a token acting on its own account&apos;s ledger balance succeeds" time="0.0296963">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-4: a token acting on its own account&apos;s ledger balance succeeds" time="0.0272875">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-5: a valid token cannot read a different account&apos;s ledger balance" time="0.0296602">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-5: a valid token cannot read a different account&apos;s ledger balance" time="0.024707">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-6: an anonymous request (no token at all) to a balance route is unaffected by tenant isolation" time="0.020795">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-6: an anonymous request (no token at all) to a balance route is unaffected by tenant isolation" time="0.0189297">
         </testcase>
-        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-7: refreshing rotates the token, and the old refresh token is rejected on reuse" time="0.0266289">
-        </testcase>
-    </testsuite>
-    <testsuite name="tests/challenge02.test.ts" timestamp="2026-09-21T12:05:46.213Z" hostname="Kawshalya-PC" tests="8" failures="0" errors="0" skipped="0" time="0.5550415">
-        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-1: a balanced two-account entry is accepted" time="0.070165">
-        </testcase>
-        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-2: an entry that does not sum to zero for its asset is rejected, and nothing is written" time="0.0410479">
-        </testcase>
-        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-3: an entry mixing two assets must balance each one independently" time="0.0368182">
-        </testcase>
-        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-4: property — a random balanced posting set is always accepted, and derived balances match the reference sum" time="0.1565289">
-        </testcase>
-        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2b: Append-only and reversal &gt; Challenge 2b-1: reversing an entry restores the pre-entry balance exactly" time="0.0415797">
-        </testcase>
-        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2b: Append-only and reversal &gt; Challenge 2b-2: the trial balance across all accounts sums to zero for every asset touched" time="0.0381256">
-        </testcase>
-        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2c: Point-in-time balances and statement pagination &gt; Challenge 2c-1: an as-of balance excludes entries posted after the cutoff entry" time="0.0468955">
-        </testcase>
-        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2c: Point-in-time balances and statement pagination &gt; Challenge 2c-2: concatenating every statement page yields each posting exactly once" time="0.0716374">
+        <testcase classname="tests/challenge01.test.ts" name="Challenge 01: Money, Assets and Authenticated Identity &gt; Challenge 1d: Authorization &gt; Challenge 1d-7: refreshing rotates the token, and the old refresh token is rejected on reuse" time="0.0226129">
         </testcase>
     </testsuite>
-    <testsuite name="tests/_sanity.test.ts" timestamp="2026-09-21T12:05:46.216Z" hostname="Kawshalya-PC" tests="11" failures="0" errors="0" skipped="0" time="0.8486693">
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Node.js is version 18.19 or newer (20 or 22 recommended)" time="0.0007211">
+    <testsuite name="tests/challenge02.test.ts" timestamp="2026-09-21T12:51:24.297Z" hostname="Kawshalya-PC" tests="8" failures="0" errors="0" skipped="0" time="0.7111764">
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-1: a balanced two-account entry is accepted" time="0.0738988">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Dependencies are installed (run `npm install` if this fails)" time="0.5122888">
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-2: an entry that does not sum to zero for its asset is rejected, and nothing is written" time="0.0613937">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; .env file exists with PORT and JWT_PRIVATE_KEY" time="0.001434">
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-3: an entry mixing two assets must balance each one independently" time="0.0546279">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The server module loads and a test session can be created" time="0.0001063">
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2a: Balance rule &gt; Challenge 2a-4: property — a random balanced posting set is always accepted, and derived balances match the reference sum" time="0.2104284">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Database connection works" time="0.0004614">
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2b: Append-only and reversal &gt; Challenge 2b-1: reversing an entry restores the pre-entry balance exactly" time="0.0509485">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Migrations apply and every required table exists" time="0.0010572">
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2b: Append-only and reversal &gt; Challenge 2b-2: the trial balance across all accounts sums to zero for every asset touched" time="0.0489621">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The local database file exists (run `npm run migrate` if this fails)" time="0.0006657">
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2c: Point-in-time balances and statement pagination &gt; Challenge 2c-1: an as-of balance excludes entries posted after the cutoff entry" time="0.0595566">
+        </testcase>
+        <testcase classname="tests/challenge02.test.ts" name="Challenge 02: The Double-Entry Ledger &gt; Challenge 2c: Point-in-time balances and statement pagination &gt; Challenge 2c-2: concatenating every statement page yields each posting exactly once" time="0.0942405">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/challenge03.test.ts" timestamp="2026-09-21T12:51:24.300Z" hostname="Kawshalya-PC" tests="24" failures="0" errors="0" skipped="0" time="0.7294581">
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3a: Price-time priority &gt; Challenge 3a-1: a crossing order trades at the resting order&apos;s price, not its own" time="0.0290718">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3a: Price-time priority &gt; Challenge 3a-2: within one price level, the earlier order fills first" time="0.0162415">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3a: Price-time priority &gt; Challenge 3a-3: a large aggressor sweeps multiple price levels in ascending price order" time="0.0153466">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3b: Order semantics &gt; Challenge 3b-1: IOC fills what it can and never rests" time="0.0071975">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3b: Order semantics &gt; Challenge 3b-2: FOK rejects entirely, leaving the book untouched, when it cannot fill in full" time="0.0112743">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3b: Order semantics &gt; Challenge 3b-3: post-only is rejected rather than matched when it would cross on entry" time="0.0077514">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3b: Order semantics &gt; Challenge 3b-4: self-trade prevention cancels the resting order and the aggressor continues against the rest of the book" time="0.0114306">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3c: Invariants &gt; Challenge 3c-1: the book is never crossed after any sequence of orders" time="0.2013472">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3c: Invariants &gt; Challenge 3c-2: total fills against an order never exceed its quantity" time="0.0049669">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3d: Cancellation &gt; Challenge 3d-1: cancelling a resting order removes exactly it, and a second cancel reports not found" time="0.0069918">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3e: Stop and stop-limit orders &gt; Challenge 3e-1: a stop order triggers as a market order once the last trade price reaches its stop price" time="0.0123899">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3e: Stop and stop-limit orders &gt; Challenge 3e-2: a stop-limit order triggers as a limit order at its own price, not a market order" time="0.0108502">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3e: Stop and stop-limit orders &gt; Challenge 3e-3: multiple stops triggered by the same trade fire in original submission order" time="0.0115474">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3f: Amendment &gt; Challenge 3f-1: decreasing quantity preserves queue position" time="0.0086495">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3f: Amendment &gt; Challenge 3f-2: a price change loses queue position, moving the order to the back of its new level" time="0.0083158">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3f: Amendment &gt; Challenge 3f-3: a quantity increase loses queue position" time="0.0080325">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3f: Amendment &gt; Challenge 3f-4: amending a non-existent or already-filled order returns 404" time="0.0115302">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3f: Amendment &gt; Challenge 3f-5: amending to a non-positive quantity is rejected" time="0.0036881">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3f: Amendment &gt; Challenge 3f-6: decreasing the quantity of an order that is NOT at the front keeps its exact place in the queue" time="0.0227285">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3g: Concurrency &gt; Challenge 3g-1: a cancel racing an aggressing fill resolves to exactly one consistent outcome" time="0.0060524">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3g: Concurrency &gt; Challenge 3g-2: an amend racing an aggressing fill never double-counts quantity" time="0.0075993">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3h: Determinism &gt; Challenge 3h-1: replaying the same 10,000-operation sequence twice produces identical trades and an identical final book" time="0.0418083">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3i: Performance &gt; Challenge 3i-1: per-order insert cost does not grow linearly with book depth" time="0.1762916">
+        </testcase>
+        <testcase classname="tests/challenge03.test.ts" name="Challenge 03: The Matching Engine &gt; Challenge 3j: Stateful model &gt; Challenge 3j-1: randomized place/cancel sequences keep the book uncrossed and agree with a naive reference matcher" time="0.0262587">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/_sanity.test.ts" timestamp="2026-09-21T12:51:24.305Z" hostname="Kawshalya-PC" tests="11" failures="0" errors="0" skipped="0" time="0.9811383">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Node.js is version 18.19 or newer (20 or 22 recommended)" time="0.0009953">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Dependencies are installed (run `npm install` if this fails)" time="0.6354093">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; .env file exists with PORT and JWT_PRIVATE_KEY" time="0.0014862">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The server module loads and a test session can be created" time="0.0001134">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Database connection works" time="0.0004878">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Migrations apply and every required table exists" time="0.0013288">
+        </testcase>
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The local database file exists (run `npm run migrate` if this fails)" time="0.0007582">
             <system-out>
 
 
@@ -94,13 +144,13 @@ This test FAILS if you have not run:
 
             </system-out>
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The asset registry endpoint responds with the supported assets" time="0.2629599">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The asset registry endpoint responds with the supported assets" time="0.2648911">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Routes exist: unknown paths are 404, real ones are not" time="0.0167673">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; Routes exist: unknown paths are 404, real ones are not" time="0.0147287">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The property-testing library works" time="0.0023376">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The property-testing library works" time="0.0036524">
         </testcase>
-        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The protected test helpers are in place" time="0.0003107">
+        <testcase classname="tests/_sanity.test.ts" name="Environment Sanity Tests &gt; The protected test helpers are in place" time="0.0003844">
         </testcase>
     </testsuite>
 </testsuites>

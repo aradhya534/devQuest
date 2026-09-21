@@ -1,9 +1,10 @@
 import { OrderBook, type Side } from "../domain/orderBook.js";
 import { submitOrder, cancelOrder, amendOrder, type IncomingOrder, type SubmitResult } from "../domain/matching.js";
-import { NotImplementedError } from "../domain/notImplemented.js";
 
 const books = new Map<string, OrderBook>();
 const registry = new Map<string, { market: string; side: Side }>(); // orderId -> where to find it, for cancel
+const lastTradePrices = new Map<string, bigint>();
+const pendingStops = new Map<string, Array<Omit<IncomingOrder, "sequence">>>();
 
 let sequenceCounter = 0;
 function nextSequence(): number {
@@ -20,25 +21,92 @@ function bookFor(market: string): OrderBook {
   return book;
 }
 
-export function placeOrder(market: string, order: Omit<IncomingOrder, "sequence">): SubmitResult {
-  if (order.orderType === "stop" || order.orderType === "stop_limit") {
-    throw new NotImplementedError("stop and stop_limit orders");
-  }
+function isStopTriggered(side: Side, stopPrice: bigint, lastPrice: bigint | undefined): boolean {
+  if (lastPrice === undefined) return false;
+  return side === "buy" ? lastPrice >= stopPrice : lastPrice <= stopPrice;
+}
 
+function processOrder(market: string, incoming: IncomingOrder): SubmitResult {
   const book = bookFor(market);
-  const result = submitOrder(book, { ...order, sequence: nextSequence() });
+  const result = submitOrder(book, incoming);
+
   if (result.restingOrder) {
-    registry.set(order.id, { market, side: order.side });
+    registry.set(incoming.id, { market, side: incoming.side });
   }
   for (const cancellation of result.cancellations) {
     registry.delete(cancellation.orderId);
   }
+
+  if (result.trades.length > 0) {
+    const lastPrice = result.trades[result.trades.length - 1]!.price;
+    lastTradePrices.set(market, lastPrice);
+
+    const stops = pendingStops.get(market);
+    if (stops && stops.length > 0) {
+      let triggeredIndex = -1;
+      while ((triggeredIndex = stops.findIndex((s) => isStopTriggered(s.side, s.stopPrice!, lastTradePrices.get(market)))) !== -1) {
+        const [triggered] = stops.splice(triggeredIndex, 1);
+        if (!triggered) break;
+        const convertedOrder: IncomingOrder = {
+          ...triggered,
+          sequence: nextSequence(),
+          orderType: triggered.orderType === "stop" ? "market" : "limit",
+          price: triggered.orderType === "stop" ? undefined : triggered.price,
+          timeInForce: triggered.orderType === "stop" ? "IOC" : (triggered.timeInForce ?? "GTC"),
+        };
+        const stopResult = processOrder(market, convertedOrder);
+        result.trades.push(...stopResult.trades);
+        result.cancellations.push(...stopResult.cancellations);
+      }
+    }
+  }
+
   return result;
 }
 
+export function placeOrder(market: string, order: Omit<IncomingOrder, "sequence">): SubmitResult {
+  const lastPrice = lastTradePrices.get(market);
+
+  if (order.orderType === "stop" || order.orderType === "stop_limit") {
+    if (isStopTriggered(order.side, order.stopPrice!, lastPrice)) {
+      const convertedOrder: IncomingOrder = {
+        ...order,
+        sequence: nextSequence(),
+        orderType: order.orderType === "stop" ? "market" : "limit",
+        price: order.orderType === "stop" ? undefined : order.price,
+        timeInForce: order.orderType === "stop" ? "IOC" : (order.timeInForce ?? "GTC"),
+      };
+      return processOrder(market, convertedOrder);
+    } else {
+      let stops = pendingStops.get(market);
+      if (!stops) {
+        stops = [];
+        pendingStops.set(market, stops);
+      }
+      stops.push(order);
+      return {
+        trades: [],
+        cancellations: [],
+        restingOrder: null,
+        rejected: false,
+      };
+    }
+  }
+
+  return processOrder(market, { ...order, sequence: nextSequence() });
+}
+
 export function cancel(orderId: string): { found: boolean; cancelled: boolean } {
+  for (const [, stops] of pendingStops) {
+    const idx = stops.findIndex((s) => s.id === orderId);
+    if (idx !== -1) {
+      stops.splice(idx, 1);
+      return { found: true, cancelled: true };
+    }
+  }
+
   const location = registry.get(orderId);
-  if (!location) return { found: true, cancelled: false };
+  if (!location) return { found: false, cancelled: false };
 
   const book = bookFor(location.market);
   const { cancelled } = cancelOrder(book, location.side, orderId);
@@ -49,8 +117,8 @@ export function cancel(orderId: string): { found: boolean; cancelled: boolean } 
 export function bestPrices(market: string): { bestBid: string | null; bestAsk: string | null } {
   const book = books.get(market);
   return {
-    bestBid: book?.bestBid()?.toString() ?? "0",
-    bestAsk: book?.bestAsk()?.toString() ?? "0",
+    bestBid: book?.bestBid()?.toString() ?? null,
+    bestAsk: book?.bestAsk()?.toString() ?? null,
   };
 }
 
@@ -124,6 +192,8 @@ export function resetAllBooks(): void {
   registry.clear();
   tradeLog.length = 0;
   orderAccounts.clear();
+  lastTradePrices.clear();
+  pendingStops.clear();
   sequenceCounter = 0;
 }
 
@@ -132,6 +202,7 @@ export function amend(orderId: string, newPrice: bigint | undefined, newQuantity
   if (!location) return { found: false, amended: null };
 
   const book = bookFor(location.market);
-  const { amended } = amendOrder(book, location.side, orderId, newPrice, newQuantity);
+  const seq = nextSequence();
+  const { amended } = amendOrder(book, location.side, orderId, newPrice, newQuantity, seq);
   return { found: true, amended };
 }
